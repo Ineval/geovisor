@@ -1158,3 +1158,22 @@ body { margin: 0; padding: 0; font-family: "MS Shell Dlg 2", system-ui, -apple-s
     details.sest-group:has(#group-sest) {
       display: none !important;
     }
+
+/* ===== CORRECCIONES SOLICITADAS ===== */
+
+/* Puntos de niveles: colores con mayor contraste */
+#group-top .layer-dot {
+  border-radius: 50% !important;
+}
+
+/* Visualización institucional refinada */
+details.sest-group > summary {
+  text-transform: none !important;
+}
+
+/* Selección provincial: plomo bajo */
+.provincia-seleccionada {
+  color: #9ca3af !important;
+  fill: #9ca3af !important;
+  stroke: #9ca3af !important;
+}
