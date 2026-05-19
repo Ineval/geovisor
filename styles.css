@@ -95,7 +95,7 @@ body { margin: 0; padding: 0; font-family: "MS Shell Dlg 2", system-ui, -apple-s
       flex: 0 0 auto;
     }
 
-    #top-yellow-bar {
+    #top-#b8bec6-bar {
       height: 16px;
       background: #ffd900;
       width: 100%;
@@ -845,7 +845,7 @@ body { margin: 0; padding: 0; font-family: "MS Shell Dlg 2", system-ui, -apple-s
       background: #063b9f !important;
     }
 
-    #top-yellow-bar {
+    #top-#b8bec6-bar {
       height: 5px !important;
       background: #ffd900 !important;
     }
@@ -1153,27 +1153,25 @@ body { margin: 0; padding: 0; font-family: "MS Shell Dlg 2", system-ui, -apple-s
     }
 
   
-    /* ===== UNIFICACIÓN NIVEL + SEST2025 ===== */
+    /* ===== UNIFICACIÓN Período 2024-2025 + SEST2025 ===== */
     #group-sest,
     details.sest-group:has(#group-sest) {
       display: none !important;
     }
 
-/* ===== CORRECCIONES SOLICITADAS ===== */
+  
+    /* ===== CORRECCIÓN FINAL SOLICITADA ===== */
+    .layer-dot[style*="#00a65a"] {
+      background-color: #00a65a !important;
+    }
 
-/* Puntos de niveles: colores con mayor contraste */
-#group-top .layer-dot {
-  border-radius: 50% !important;
-}
+    .layer-dot[style*="#ff8c00"] {
+      background-color: #ff8c00 !important;
+    }
 
-/* Visualización institucional refinada */
-details.sest-group > summary {
-  text-transform: none !important;
-}
-
-/* Selección provincial: plomo bajo */
-.provincia-seleccionada {
-  color: #9ca3af !important;
-  fill: #9ca3af !important;
-  stroke: #9ca3af !important;
-}
+    .province-selected,
+    .provincia-seleccionada {
+      stroke: #b8bec6 !important;
+      fill: #b8bec6 !important;
+      color: #b8bec6 !important;
+    }
