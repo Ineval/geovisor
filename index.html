@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Geovisor INEVAL - SEST25</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"/>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <div id="top-blue-bar"></div>
+  <div id="top-yellow-bar"></div>
+
+  <header id="main-header">
+    <div class="official-brand">
+      <img class="official-logo" src="logo.png" alt="Logo El Nuevo Ecuador"/>
+      <div class="brand-separator"></div>
+      <div class="geoportal-title">GEOVISOR INSTITUTO NACIONAL DE EVALUACIÓN EDUCATIVA</div>
+    </div>
+  </header>
+
+  <main id="app-layout">
+    <aside id="sidebar">
+      <div class="sidebar-content">
+        <div id="status"></div>
+<div class="tool-box">
+          <h2 class="tool-title">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            Filtros
+          </h2>
+          <label class="filter-label">Provincia</label><select id="provinceFilter"><option value="">-- Todo el Ecuador --</option></select>
+          <label class="filter-label">Área</label><select id="areaFilter"><option value="">-- Todas --</option></select>
+          <label class="filter-label">Régimen</label><select id="regimeFilter"><option value="">-- Todos --</option></select>
+          <label class="filter-label">Sostenimiento</label><select id="sustainFilter"><option value="">-- Todos --</option></select>
+        </div>
+
+        <div class="tool-box">
+          <h2 class="tool-title">
+            <svg viewBox="0 0 24 24"><path d="M12 2L1 7l11 5 11-5-11-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            Nivel · Período 2024-2025
+          </h2>
+          <div class="level-grid">
+            <label class="level-item"><input type="radio" name="nivel-activo" class="level-check" value="elemental" checked><span class="dot" style="background:#00a65a"></span>Elemental</label>
+            <label class="level-item"><input type="radio" name="nivel-activo" class="level-check" value="medio"><span class="dot" style="background:#0078d4"></span>Medio</label>
+            <label class="level-item"><input type="radio" name="nivel-activo" class="level-check" value="superior"><span class="dot" style="background:#6a1b9a"></span>Superior</label>
+            <label class="level-item"><input type="radio" name="nivel-activo" class="level-check" value="bachillerato"><span class="dot" style="background:#ff8c00"></span>Bachillerato</label>
+          </div>
+        </div>
+
+        <div class="tool-box">
+          <h2 class="tool-title">
+            <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/></svg>
+            Asignaturas Seleccionadas
+          </h2>
+          <div id="subject-grid-container" class="subject-grid">
+            <span style="font-size:12px; color:#94a3b8;">Selecciona al menos un nivel educativo primero.</span>
+          </div>
+        </div>
+
+        <div class="tool-box">
+          <h2 class="tool-title">
+            <svg viewBox="0 0 24 24"><path d="M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.61-1.27-7.4 5.74zM12 16l7.36-5.73L21 11.54l-9 7-9-7 1.63-1.27L12 16zm0-11.47L4.64 10.25 12 16l7.36-5.75L12 4.53z"/></svg>
+            Referencia
+          </h2>
+          <label class="level-item"><input type="checkbox" id="limitCheck" checked><span class="dot" style="background:#263746"></span>Límites Provinciales</label>
+        </div>
+
+      </div>
+      <button id="toggle-btn" title="Ocultar panel">❮</button>
+    </aside>
+
+    <section id="map-container">
+      <div id="map"></div>
+
+      <div class="map-base-floating">
+        <label>🗺️ Mapa Base</label>
+        <select id="baseMapSelect">
+          <option value="positron">CartoDB Claro (Positron)</option>
+          <option value="satellite">Esri Satélite (World Imagery)</option>
+          <option value="osm">OpenStreetMap (Clásico)</option>
+          <option value="dark">CartoDB Oscuro (Dark Matter)</option>
+        </select>
+      </div>
+
+      
+      <div class="legend-floating-left">
+        <strong>Simbología</strong>
+        <div class="legend-item"><span class="legend-color" style="background:var(--color-dn1)"></span>400 - 599 · Insuficiente</div>
+        <div class="legend-item"><span class="legend-color" style="background:var(--color-dn2)"></span>600 - 699 · Elemental</div>
+        <div class="legend-item"><span class="legend-color" style="background:var(--color-dn3)"></span>700 - 799 · Satisfactorio</div>
+        <div class="legend-item"><span class="legend-color" style="background:var(--color-dn4)"></span>800 - 1000 · Excelente</div>
+      </div>
+    </section>
+  </main>
+
+  <div id="stats-box"><h2>📊 Estadísticas</h2><div id="stats-content"></div></div>
+  <div id="footer-bar">© 2026 Instituto Nacional de Evaluación Educativa</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
