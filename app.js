@@ -348,7 +348,7 @@ function calcStats(vals) {
   const nums = vals.map(Number).filter(v => !Number.isNaN(v));
   if (!nums.length) return null;
   const sum = nums.reduce((a, b) => a + b, 0), avg = sum / nums.length, min = Math.min(...nums), max = Math.max(...nums);
-  return { count: nums.length, avg: Math.round(avg), min: Math.min(...nums), max: Math.max(...nums) };
+  return { count: nums.length, avg: Math.round(avg), min: Math.round(min), max: Math.round(max) };
 }
 
 function updateStats() {
@@ -452,6 +452,3 @@ document.getElementById('limitCheck').addEventListener('change', e => { if (!lim
 map.on('zoomend', () => { const z = map.getZoom(), pane = map.getPane('pointsPane'); if (pane) pane.style.display = z < 8 ? 'none' : 'block'; document.querySelectorAll('.province-label').forEach(label => { if (z < 7) { label.style.opacity = '0'; label.style.fontSize = '7px'; } else if (z === 7) { label.style.opacity = '.85'; label.style.fontSize = '9px'; } else { label.style.opacity = '1'; label.style.fontSize = '11px'; } }); });
 
 loadGeoportal();
-</script>
-</body>
-</html>
